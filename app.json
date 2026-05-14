@@ -1,19 +1,21 @@
 {
   "expo": {
-    "name": "margin",
-    "slug": "margin",
+    "name": "Cozy Quotes",
+    "slug": "cozy-quotes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "scheme": "cozyquotes",
+    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#F7F0E5"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.nickkupriyanov.cozyquotes"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +27,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-sqlite",
+      [
+        "./plugins/withCozyQuotesIos",
+        {
+          "appGroupIdentifier": "group.com.nickkupriyanov.cozyquotes",
+          "widgetBundleIdentifier": "com.nickkupriyanov.cozyquotes.widget"
+        }
+      ]
+    ]
   }
 }
