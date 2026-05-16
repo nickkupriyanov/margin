@@ -158,7 +158,6 @@ struct CozyQuoteWidgetView: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            background
             VStack(alignment: .leading, spacing: family == .systemSmall ? 10 : 14) {
                 Text(entry.payload.text)
                     .font(.custom("Georgia", size: family == .systemSmall ? 17 : 22))
@@ -176,7 +175,9 @@ struct CozyQuoteWidgetView: View {
             }
             .padding(family == .systemSmall ? 16 : 20)
         }
-        .containerBackground(Color(red: 0.97, green: 0.94, blue: 0.88), for: .widget)
+        .containerBackground(for: .widget) {
+            background
+        }
     }
 
     private var sourceText: String {
@@ -192,13 +193,6 @@ struct CozyQuoteWidgetView: View {
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
-        .overlay(alignment: .top) {
-            Rectangle()
-                .fill(Color(red: 0.48, green: 0.34, blue: 0.23).opacity(0.08))
-                .frame(height: 1)
-                .padding(.horizontal, 18)
-                .padding(.top, 14)
-        }
     }
 }
 
@@ -216,6 +210,7 @@ struct CozyQuotesWidget: Widget {
         StaticConfiguration(kind: kind, provider: CozyQuoteProvider()) { entry in
             CozyQuoteWidgetView(entry: entry)
         }
+        .contentMarginsDisabled()
         .configurationDisplayName("Cozy Quote")
         .description("A saved passage returns quietly.")
         .supportedFamilies([.systemSmall, .systemMedium])

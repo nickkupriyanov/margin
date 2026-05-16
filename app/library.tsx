@@ -121,9 +121,12 @@ const styles = StyleSheet.create({
   search: {
     borderRadius: 8,
     borderWidth: 1,
+    fontFamily: typography.sans,
     fontSize: 17,
+    height: 56,
+    lineHeight: 22,
     paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingVertical: 0,
   },
   filters: {
     flexDirection: 'row',

@@ -66,9 +66,12 @@ export function QuotesProvider({ children }: PropsWithChildren) {
 
   const chooseRandomQuote = useCallback(() => {
     if (!quotes.length) return;
-    const random = quotes[Math.floor(Math.random() * quotes.length)];
+    const currentId = featuredId ?? quotes[0]?.id;
+    const options = quotes.filter((quote) => quote.id !== currentId);
+    const pool = options.length ? options : quotes;
+    const random = pool[Math.floor(Math.random() * pool.length)];
     setFeaturedId(random.id);
-  }, [quotes]);
+  }, [featuredId, quotes]);
 
   const addQuote = useCallback(async (draft: QuoteDraft) => {
     const quote = await insertQuote(draft);

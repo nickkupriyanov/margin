@@ -35,6 +35,12 @@ export default function QuoteDetailsScreen() {
   }
 
   const currentQuote = quote;
+  const quoteLength = currentQuote.text.trim().length;
+  const quoteTextStyle = quoteLength > 520
+    ? styles.quoteCompact
+    : quoteLength > 280
+      ? styles.quoteBalanced
+      : styles.quote;
 
   async function save() {
     await updateQuote(currentQuote.id, {
@@ -85,15 +91,17 @@ export default function QuoteDetailsScreen() {
               </View>
             ) : (
               <>
-                <Text style={[styles.quote, { color: colors.ink }]}>{currentQuote.text}</Text>
+                <Text style={[quoteTextStyle, { color: colors.ink }]}>{currentQuote.text}</Text>
                 <Text style={[styles.source, { color: colors.inkSoft }]}>
                   {currentQuote.author || 'Unknown'}{currentQuote.source ? `, ${currentQuote.source}` : ''}
                 </Text>
-                <View style={styles.tags}>
-                  {currentQuote.tags.map((tag) => (
-                    <Text key={tag} style={[styles.tag, { color: colors.muted, borderColor: colors.hairline }]}>#{tag}</Text>
-                  ))}
-                </View>
+                {currentQuote.tags.length ? (
+                  <View style={styles.tags}>
+                    {currentQuote.tags.map((tag) => (
+                      <Text key={tag} style={[styles.tag, { color: colors.muted, borderColor: colors.hairline }]}>#{tag}</Text>
+                    ))}
+                  </View>
+                ) : null}
               </>
             )}
           </Animated.View>
@@ -131,9 +139,9 @@ const styles = StyleSheet.create({
   safe: { flex: 1 },
   keyboard: { flex: 1 },
   content: {
-    minHeight: '100%',
+    flexGrow: 1,
     padding: 24,
-    paddingBottom: 42,
+    paddingBottom: 54,
   },
   nav: {
     flexDirection: 'row',
@@ -143,7 +151,8 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     justifyContent: 'center',
-    minHeight: 560,
+    marginTop: 34,
+    minHeight: 500,
   },
   quote: {
     fontFamily: typography.serif,
@@ -151,21 +160,34 @@ const styles = StyleSheet.create({
     lineHeight: 45,
     letterSpacing: 0,
   },
+  quoteBalanced: {
+    fontFamily: typography.serif,
+    fontSize: 27,
+    lineHeight: 39,
+    letterSpacing: 0,
+  },
+  quoteCompact: {
+    fontFamily: typography.serif,
+    fontSize: 23,
+    lineHeight: 34,
+    letterSpacing: 0,
+  },
   source: {
     fontSize: 16,
     lineHeight: 24,
-    marginTop: 26,
+    marginTop: 28,
   },
   tags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    marginTop: 22,
+    marginTop: 18,
   },
   tag: {
     borderRadius: 999,
     borderWidth: 1,
     fontSize: 13,
+    lineHeight: 18,
     paddingHorizontal: 11,
     paddingVertical: 7,
   },
@@ -173,6 +195,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     justifyContent: 'center',
+    marginTop: 30,
+    paddingBottom: 4,
   },
   form: {
     gap: 20,

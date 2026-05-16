@@ -53,6 +53,7 @@ export default function HomeScreen() {
             label={featuredQuote?.isFavorite ? 'Loved' : 'Favorite'}
             onPress={() => featuredQuote && toggleFavorite(featuredQuote.id)}
             disabled={!featuredQuote || featuredQuote.id === 'fallback'}
+            minWidth={96}
           />
         </Animated.View>
       </ScrollView>

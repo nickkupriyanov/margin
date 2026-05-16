@@ -7,9 +7,10 @@ type Props = {
   onPress: () => void;
   disabled?: boolean;
   selected?: boolean;
+  minWidth?: number;
 };
 
-export function QuietButton({ label, onPress, disabled, selected }: Props) {
+export function QuietButton({ label, onPress, disabled, selected, minWidth }: Props) {
   const scheme = useColorScheme();
   const colors = scheme === 'dark' ? palette.dark : palette.light;
 
@@ -29,6 +30,7 @@ export function QuietButton({ label, onPress, disabled, selected }: Props) {
         {
           backgroundColor: selected ? colors.pressed : colors.card,
           borderColor: selected ? colors.accent : colors.hairline,
+          minWidth,
           opacity: disabled ? 0.42 : 1,
         },
         pressed && !disabled ? { transform: [{ translateY: 1 }], backgroundColor: colors.pressed } : null,
@@ -41,6 +43,7 @@ export function QuietButton({ label, onPress, disabled, selected }: Props) {
 
 const styles = StyleSheet.create({
   button: {
+    alignItems: 'center',
     borderRadius: 999,
     borderWidth: 1,
     paddingHorizontal: 16,
