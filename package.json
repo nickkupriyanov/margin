@@ -1,7 +1,15 @@
 {
   "name": "margin",
   "version": "1.0.0",
+  "description": "Cozy Quotes — a quiet, local-first home for the lines worth keeping, with an iOS home screen widget.",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nickkupriyanov/margin.git"
+  },
   "main": "expo-router/entry",
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
     "start": "expo start",
     "prebuild": "expo prebuild --platform ios",
