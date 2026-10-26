@@ -213,4 +213,4 @@ reads them through a shared App Group container.
 
 ## License
 
-Not licensed yet. Add a `LICENSE` file before distributing the app or accepting contributions.
+MIT © 2026 Nick Kupriyanov. See [LICENSE](./LICENSE).

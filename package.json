@@ -2,6 +2,7 @@
   "name": "margin",
   "version": "1.0.0",
   "description": "Cozy Quotes — a quiet, local-first home for the lines worth keeping, with an iOS home screen widget.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/nickkupriyanov/margin.git"
